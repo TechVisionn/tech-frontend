@@ -9,6 +9,7 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
 import "../App.css";
+import "leaflet-geosearch/dist/geosearch.css";
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -18,7 +19,11 @@ const DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 const search = new GeoSearchControl({
-  provider: new OpenStreetMapProvider(),
+  provider: new OpenStreetMapProvider({
+    params: {
+      countrycodes: 'BR',
+    },
+  }),
   autoComplete: true,
   style: 'bar',
   notFoundMessage: 'Endereço não encontrado!',
