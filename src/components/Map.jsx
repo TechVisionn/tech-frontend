@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
 import { Chart } from "primereact/chart";
 import { OpenStreetMapProvider, GeoSearchControl } from "leaflet-geosearch";
 import L from "leaflet";
@@ -33,6 +33,14 @@ const search = new GeoSearchControl({
   showPopup: false,
   autoClose: true
 });
+
+const coordenadasPoligono = [
+  [-23.2237, -45.9400],
+  [-23.2140, -45.9420],
+  [-23.2153, -45.9410],
+  [-23.2243, -45.9330],
+  [-23.2276, -45.9340]
+];
 
 const exportPrint = L.easyPrint({
   title: 'Imprimir Mapa',
@@ -110,15 +118,20 @@ class Mapa extends Component {
   }
 
   handleZoomReset() {
-    this.leafletMap.setView([-16, -55], 5); // Define o centro e o nível de zoom desejados
+    this.leafletMap.setView([-21, -49], 7);
   }
 
   render() {
     return (
       <div id="mapa">
-        <MapContainer center={[-16, -55]} zoom={5} style={{ height: "100vh" }} ref={ref => this.leafletMap = ref}>
+        <MapContainer center={[-21, -49]} zoom={7} style={{ height: "100vh" }} ref={ref => this.leafletMap = ref}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          <Marker position={[-25, -50]}>
+          <Polygon positions={coordenadasPoligono} color="green" fillColor="darkgreen" weight={2}>
+            <Popup>
+              {coordenadasPoligono}
+            </Popup>
+          </Polygon>
+          <Marker position={[-23.2200, -45.8000]}>
             <Popup>
               <Chart type="bar" data={chartData} options={chartOptions} />
             </Popup>
