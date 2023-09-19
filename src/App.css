@@ -48,3 +48,7 @@
 .leaflet-control-geosearch .reset {
   font-size: 15px;
 }
+
+.leaflet-control-easyPrint {
+  margin-left: 10px;
+}
