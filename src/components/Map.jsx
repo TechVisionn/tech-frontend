@@ -35,11 +35,11 @@ const search = new GeoSearchControl({
 });
 
 const coordenadasPoligono = [
-  [-23.2237, -45.9009],
-  [-23.2140, -45.9090],
-  [-23.2153, -45.9217],
-  [-23.2243, -45.9264],
-  [-23.2276, -45.9178]
+  [-23.2237, -45.9400],
+  [-23.2140, -45.9420],
+  [-23.2153, -45.9410],
+  [-23.2243, -45.9330],
+  [-23.2276, -45.9340]
 ];
 
 const exportPrint = L.easyPrint({
@@ -131,7 +131,7 @@ class Mapa extends Component {
               {coordenadasPoligono}
             </Popup>
           </Polygon>
-          <Marker position={[-25, -50]}>
+          <Marker position={[-23.2200, -45.8000]}>
             <Popup>
               <Chart type="bar" data={chartData} options={chartOptions} />
             </Popup>
