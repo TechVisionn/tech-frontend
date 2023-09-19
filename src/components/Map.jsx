@@ -8,6 +8,7 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
+import "leaflet-easyprint";
 import "../App.css";
 import "leaflet-geosearch/dist/geosearch.css";
 
@@ -31,6 +32,15 @@ const search = new GeoSearchControl({
   showMarker: false,
   showPopup: false,
   autoClose: true
+});
+
+const exportPrint = L.easyPrint({
+  title: 'Imprimir Mapa',
+  position: 'topleft',
+  sizeModes: ['A4Landscape'],
+  filename: 'mapa',
+  exportOnly: true,
+  hideControlContainer: true,
 });
 
 const chartData = {
@@ -65,13 +75,43 @@ const chartOptions = {
 };
 
 class Mapa extends Component {
+  constructor(props) {
+    super(props);
+    this.handleZoomReset = this.handleZoomReset.bind(this);
+  }
 
   componentDidMount() {
     setTimeout(() => {
       this.leafletMap.addControl(search);
+      this.leafletMap.addControl(exportPrint);
+      this.addCustomZoomResetControl();
     }, 100);
+  }
 
+  addCustomZoomResetControl() {
+    if (!this.customZoomResetControl) {
+      this.customZoomResetControl = L.control({ position: 'topleft' });
+
+      this.customZoomResetControl.onAdd = () => {
+        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+        const zoomResetButton = L.DomUtil.create('a', 'leaflet-control-zoom-reset leaflet-bar-part', container);
+        
+        zoomResetButton.href = '#';
+        zoomResetButton.title = 'Redefinir Zoom';
+        zoomResetButton.innerHTML = '↻';
+
+        L.DomEvent.on(zoomResetButton, 'click', this.handleZoomReset);
+
+        return container;
+      };
+
+      this.customZoomResetControl.addTo(this.leafletMap);
     }
+  }
+
+  handleZoomReset() {
+    this.leafletMap.setView([-16, -55], 5); // Define o centro e o nível de zoom desejados
+  }
 
   render() {
     return (
