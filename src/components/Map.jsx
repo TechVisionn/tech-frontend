@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
 import { Chart } from "primereact/chart";
 import { OpenStreetMapProvider, GeoSearchControl } from "leaflet-geosearch";
 import L from "leaflet";
