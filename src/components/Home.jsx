@@ -18,9 +18,6 @@ class Home extends Component {
 
   baixarRelatorio() {
     GlebaDataService.baixarRelatorioGleba(this.state.identificador);
-    /*.then(resp => {
-      console.log(resp)
-    });*/
     this.setState({ identificador: "" })
   }
 
