@@ -69,3 +69,15 @@
   top: 50%;
   left: 50%;
 }
+
+.leaflet-popup-content-wrapper{
+  width: 347px;
+  height: 178px;
+  padding: 1px;
+}
+
+.leaflet-popup-content-wrapper {
+  width: 347px;
+  height: 178px;
+  padding: 1px;
+}
