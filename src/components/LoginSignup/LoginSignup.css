@@ -1,0 +1,323 @@
+.background-container {
+  background-image: url('/src/images/fundo-leaflet.PNG'); /* Substitua 'caminho-para-sua-imagem.jpg' pelo caminho real para a sua imagem de fundo */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh; /* Isso garante que o contêiner cubra toda a altura da tela */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos para o texto personalizado */
+.custom-text {
+    font-size: 24px; /* Tamanho da fonte */
+    color: #ff0000; /* Cor do texto */
+    position: absolute; /* Posição absoluta */
+    top: 50%; /* Defina a posição vertical desejada */
+    transform: translateY(-50%); /* Centralize verticalmente */
+    text-decoration: underline; /* Sublinhar o texto */
+}
+
+
+
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 20px;
+    width: 750px; /* Altere o valor da largura conforme necessário */
+    background: #fff;
+    padding: 30px;
+    border: 2px solid #000; 
+    border-radius: 15px; /* Adicione uma borda de 2px preta */
+  }
+
+  .submit1-container{
+    position: relative;
+    left: 160px;
+}
+
+  .submit2-container{
+        position: relative;
+        left: 140px;
+    }
+.header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    width: 100%;
+    margin-top: 30px;
+
+}
+
+.text{
+    color: hsl(125.13deg 88.4% 66.3%);
+    font-size: 18px;
+    font-weight: 700;
+    top: -35px;
+    position: relative;
+}
+.underline{
+    width: 65px;
+    height: 5px;
+    background: hsl(125.13deg 88.4% 66.3% );
+    border-radius: 9px;
+    position: relative;
+    top: -16px;
+
+}
+.inputs{
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.input{
+    display: flex;
+    align-items: center;
+    margin:auto;
+    width: 480px;
+    height: 45px;
+    background: #eaeaea ;
+    border-radius: 6px;
+    top: -15px;
+
+}
+
+.input img{
+    margin: 0px 30px;
+    width: 30px;
+    height: auto;
+    }
+
+
+.input input{
+    height:30px;
+    width: 400px;
+    background: transparent;
+    border:none;
+    outline: none;
+    color: #797979;
+    font-size:19px;
+
+}
+
+.Logar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    color: #19ca34;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+    /* Adicione outros estilos específicos para o botão "Login" aqui */
+  }
+  
+  /* Estilos para o botão "Cadastrar" */
+  .cadastro-container {
+    position: relative;
+    top:45px;
+
+  }
+
+.submit-container {
+    
+   display: flex;
+   gap: 30px;
+   margin: 60px auto;
+   position: relative;
+   top: 30px;
+   right: -40px;
+   font-size: 20px; /* Tamanho da fonte maior */
+   font-weight: bold; /* Texto em negrito */
+   text-decoration: underline; /* Sublinhar o texto */
+   color: #008000; /* Cor mais forte (verde) */
+   
+}
+
+
+/* Estilo para o botão (inicialmente cinza) */
+.submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    color: #19ca34;
+    border-radius:50px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    top: -355px;
+    left: 65px;
+}
+
+/* Estilo para o botão ativo (selecionado) */
+.submit.active {
+    background: #3c009d; /* Cor de fundo quando selecionado */
+    color: #fff; /* Cor do texto quando selecionado */
+}
+
+
+.submit gray{
+    background: hsl(125.13deg 88.4% 66.3%);
+    color: #676767;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333; /* Cor do texto padrão */
+  }
+  
+  .checkbox-label {
+    cursor: pointer;
+  }
+  
+  .checkbox-input {
+    display: none; /* Oculta o input nativo */
+  }
+  
+  .custom-checkbox {
+    position: relative;
+    width: 20px; /* Tamanho do ícone */
+    height: 20px; /* Tamanho do ícone */
+    background-color: #fff; /* Cor de fundo padrão */
+    border: 2px solid #333; /* Cor da borda padrão */
+    border-radius: 4px;
+  }
+  
+  .custom-checkbox:before {
+    content: '\f00c'; /* Código Unicode para um ícone de marca de seleção (pode ser um ícone diferente) */
+    font-family: 'Font Awesome'; /* Fonte de ícones (substitua pela sua fonte de ícones preferida) */
+    font-size: 16px; /* Tamanho do ícone */
+    color: #fff; /* Cor do ícone quando marcado */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; /* O ícone está oculto por padrão */
+  }
+  
+  .custom-checkbox .checkbox-input:checked + .custom-checkbox:before {
+    opacity: 1; /* Mostra o ícone quando o checkbox está marcado */
+    background-color: #3c009d; /* Cor de fundo quando o checkbox está marcado */
+    border: 2px solid #3c009d; /* Cor da borda quando o checkbox está marcado */
+    border-radius: 4px;
+  }
+
+  /* Adicione este CSS ao seu arquivo LoginSignup.css */
+
+.password-strength{
+white-space: nowrap;
+font-weight: bold;
+margin-top: 58px;
+position: relative;
+top: 10px;
+left: -320px;
+text-align: center;
+font-size: 15px;
+}
+  /* Estilos para força da senha "Frac" */
+  .password-strength.frac {
+    color: red; /* Cor para senha fraca */
+  }
+  
+  /* Estilos para força da senha "Média" */
+  .password-strength.media {
+    color: orange; /* Cor para senha média */
+  }
+  
+  /* Estilos para força da senha "Forte" */
+  .password-strength.forte {
+    color: green; /* Cor para senha forte */
+  }
+  
+  /* Exemplo de posicionamento à direita da entrada de senha */
+  .input {
+    position: relative;
+  }
+  
+  .password-strength.right {
+    position: absolute;
+    top: 0;
+    right: 0; /* Posicione à direita */
+    margin-top: 0; /* Redefina a margem superior */
+    margin-right: 8px; /* Ajuste a margem direita conforme necessário */
+  }
+  
+  .input input[type="checkbox"] {
+    /* Defina o tamanho desejado para o checkbox */
+    transform: scale(0.8);
+    margin-right: 10px;
+    position: absolute;
+    right: 230px;
+  }
+  
+  .input label {
+    /* Alinhe o texto verticalmente com o checkbox */
+    vertical-align: nowrap;
+    position:relative;
+    left: 70px;
+  }
+ 
+  /* Estilo para os botões */
+
+
+
+  
+  .Cadastro-button {
+    background: #19ca34;
+    color: white;
+    border-radius: 30px;
+    width: 420%;
+    border: none;
+    outline: none;
+    padding: 8px 0 8px 15px;
+    font-size: 15px;
+    top: -60px;
+    cursor: pointer;
+    position: relative;
+    right: 215px;
+}
+  
+  
+  .button-container button:last-child {
+    margin-right: 0; /* Remover o espaço à direita do último botão */
+  }
+  
+  .button-container button:hover {
+    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+  }
+  
+  /* Estilos específicos para o botão "Logar" */
+.login-button {
+    background: #19ca34;
+    color: white;
+    border-radius: 30px;
+    width: 540%;
+    border: none;
+    outline: none;
+    padding: 8px 0 8px 15px;
+    font-size: 15px;
+    margin-top: 20px;
+    cursor: pointer;
+    position: relative;
+    right: 215px;
+    top: -65px;
+
+}
+  
+  .login-button:hover {
+    background-color: #0056b3; /* Cor de fundo do botão "Logar" ao passar o mouse */
+  }
