@@ -5,7 +5,7 @@ import { Button } from "primereact/button";
 import GlebaDataService from "../data_service/GlebaDataService.tsx";
 
 import "../App.css";
-import "primereact/resources/themes/lara-light-blue/theme.css";
+import "primereact/resources/themes/tailwind-light/theme.css";
 import "primereact/resources/primereact.min.css";                                    
 
 class Home extends Component {
