@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./LoginSignup.css";
 import { SelectButton } from 'primereact/selectbutton';
 import { Button } from 'primereact/button'
+
+import "../components/Assets/styles/Login.css";
 import 'primeicons/primeicons.css';
-        
 
 
 const LoginSignup = () => {
@@ -30,11 +30,9 @@ const LoginSignup = () => {
   };
 
   const handleButton1Click = () => {
-    // Lógica para lidar com o clique no "Botão 1" (Login)
   };
 
   const handleButton2Click = () => {
-    // Lógica para lidar com o clique no "Botão 2" (Cadastrar)
   };
 
   return (

@@ -1,6 +1,5 @@
 .background-container {
   position: relative;
-  background-image: url('/src/images/fundo-leaflet.PNG');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -15,31 +14,29 @@
   border: none;
 }
 
-/* Adjust the alignment of the SelectButton */
 .custom-select-button .p-selectbutton-items {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Adjust the gap as needed */
+  gap: 10px;
 }
 
-
 .background-overlay {
-  position: absolute; /* Para sobrepor o conteúdo */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(1, 5, 0, 0.778); /* Cor preta com opacidade de 0.5 */
+  background-color: rgba(1, 5, 0, 0.778);
   backdrop-filter: blur(4px); 
 }
 
 .custom-text {
-    font-size: 24px; /* Tamanho da fonte */
-    color: #ff0000; /* Cor do texto */
-    position: absolute; /* Posição absoluta */
-    top: 50%; /* Defina a posição vertical desejada */
-    transform: translateY(-50%); /* Centralize verticalmente */
-    text-decoration: underline; /* Sublinhar o texto */
+    font-size: 24px;
+    color: #ff0000; 
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-decoration: underline;
 }
 
 .container {
@@ -50,11 +47,10 @@
   padding: 30px;
   border: 2px solid #000;
   border-radius: 15px;
-  margin: 0 auto;/* Centraliza horizontalmente */
+  margin: 0 auto;
   margin-top: 145px; 
   height: 60%;
 }
-
 
   .submit1-container{
     position: relative;
@@ -74,7 +70,6 @@
     margin-top: 30px;
 
 }
-
 .text{
     color: #241f25;;
     font-size: 18px;
@@ -110,11 +105,9 @@
   border: 25px;
 }
 
-
-
 .input .pi {
   position: relative;
-  left: 10px; /* Adicione margem à esquerda dos ícones para separá-los do texto */
+  left: 10px;
 }
 
 .input img{
@@ -122,8 +115,6 @@
     width: 30px;
     height: auto;
     }
-
-
 .input input{
     height:30px;
     width: 400px;
@@ -135,7 +126,6 @@
    position: relative;
    right: -25px;
 }
-
 .Logar-container {
     display: flex;
     justify-content: center;
@@ -146,15 +136,12 @@
     font-size: 19px;
     font-weight: 700;
     cursor: pointer;
-    /* Adicione outros estilos específicos para o botão "Login" aqui */
   }
-  
   .cadastro-container {
     position: relative;
     top:45px;
 
   }
-
 .submit-container {
     
    display: flex;
@@ -163,15 +150,12 @@
    position: relative;
    top: 30px;
    right: -40px;
-   font-size: 20px; /* Tamanho da fonte maior */
-   font-weight: bold; /* Texto em negrito */
-   text-decoration: underline; /* Sublinhar o texto */
-   color: #008000; /* Cor mais forte (verde) */
+   font-size: 20px;
+   font-weight: bold;
+   text-decoration: underline;
+   color: #008000;
    
 }
-
-
-/* Estilo para o botão (inicialmente cinza) */
 .submit{
     display: flex;
     justify-content: center;
@@ -186,14 +170,10 @@
     top: -355px;
     left: 65px;
 }
-
-/* Estilo para o botão ativo (selecionado) */
 .submit.active {
-    background: #3c009d; /* Cor de fundo quando selecionado */
-    color: #fff; /* Cor do texto quando selecionado */
+    background: #3c009d;
+    color: #fff;
 }
-
-
 .submit gray{
     background: hsl(125.13deg 88.4% 66.3%);
     color: #676767;
@@ -205,46 +185,41 @@
     gap: 10px;
     margin-top: 10px;
     font-size: 16px;
-    color: #333; /* Cor do texto padrão */
+    color: #333;
   }
-  
   .checkbox-label {
     cursor: pointer;
   }
-  
   .checkbox-input {
-    display: none; /* Oculta o input nativo */
+    display: none;
   }
   
   .custom-checkbox {
     position: relative;
-    width: 20px; /* Tamanho do ícone */
-    height: 20px; /* Tamanho do ícone */
-    background-color: #fff; /* Cor de fundo padrão */
-    border: 2px solid #333; /* Cor da borda padrão */
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 2px solid #333;
     border-radius: 4px;
   }
   
   .custom-checkbox:before {
-    content: '\f00c'; /* Código Unicode para um ícone de marca de seleção (pode ser um ícone diferente) */
-    font-family: 'Font Awesome'; /* Fonte de ícones (substitua pela sua fonte de ícones preferida) */
-    font-size: 16px; /* Tamanho do ícone */
-    color: #fff; /* Cor do ícone quando marcado */
+    content: '\f00c';
+    font-family: 'Font Awesome';
+    font-size: 16px;
+    color: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0; /* O ícone está oculto por padrão */
+    opacity: 0;
   }
-  
-  .custom-checkbox .checkbox-input:checked + .custom-checkbox:before {
-    opacity: 1; /* Mostra o ícone quando o checkbox está marcado */
-    background-color: #3c009d; /* Cor de fundo quando o checkbox está marcado */
-    border: 2px solid #3c009d; /* Cor da borda quando o checkbox está marcado */
+    .custom-checkbox .checkbox-input:checked + .custom-checkbox:before {
+    opacity: 1;
+    background-color: #3c009d;
+    border: 2px solid #3c009d;
     border-radius: 4px;
   }
-
-  /* Adicione este CSS ao seu arquivo LoginSignup.css */
 
 .password-strength{
 white-space: nowrap;
@@ -256,55 +231,38 @@ left: -255px;
 text-align: center;
 font-size: 15px;
 }
-  /* Estilos para força da senha "Frac" */
   .password-strength.frac {
-    color: red; /* Cor para senha fraca */
+    color: red; 
   }
-  
-  /* Estilos para força da senha "Média" */
   .password-strength.media {
-    color: orange; /* Cor para senha média */
+    color: orange;
   }
-  
-  /* Estilos para força da senha "Forte" */
   .password-strength.forte {
-    color: green; /* Cor para senha forte */
+    color: green;
   }
-  
-  /* Exemplo de posicionamento à direita da entrada de senha */
   .input {
     position: relative;
   }
-  
   .password-strength.right {
     position: absolute;
     top: 0;
-    right: 0; /* Posicione à direita */
-    margin-top: 0; /* Redefina a margem superior */
-    margin-right: 8px; /* Ajuste a margem direita conforme necessário */
+    right: 0;
+    margin-top: 0;
+    margin-right: 8px;
   }
   
   .input input[type="checkbox"] {
-    /* Defina o tamanho desejado para o checkbox */
     transform: scale(0.8);
     margin-right: 10px;
     position: absolute;
     right: 150px;
 }
-  
-  
   .input label {
     vertical-align: nowrap;
     position:relative;
     left: 50px;
   }
- 
-  /* Estilo para os botões */
-
-
-
-  
-  .Cadastro-button {
+    .Cadastro-button {
     background: #19a0ca;
     color: white;
     border-radius: 30px;
@@ -319,7 +277,6 @@ font-size: 15px;
     right: 145px;
     text-align: center;
 }
-  
 .button-container {
   
   flex-direction: column;

@@ -9,7 +9,7 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
 import "leaflet-easyprint";
-import "../App.css";
+import "../components/Assets/styles/App.css";
 import "leaflet-geosearch/dist/geosearch.css";
 
 const DefaultIcon = L.icon({
