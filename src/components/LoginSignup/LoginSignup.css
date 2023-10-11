@@ -1,16 +1,38 @@
 .background-container {
-  background-image: url('/src/images/fundo-leaflet.PNG'); /* Substitua 'caminho-para-sua-imagem.jpg' pelo caminho real para a sua imagem de fundo */
+  position: relative;
+  background-image: url('/src/images/fundo-leaflet.PNG');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  min-height: 100vh; /* Isso garante que o contêiner cubra toda a altura da tela */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* Estilos para o texto personalizado */
+.custom-select-button .p-button {
+  border: none;
+}
+
+/* Adjust the alignment of the SelectButton */
+.custom-select-button .p-selectbutton-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adjust the gap as needed */
+}
+
+
+.background-overlay {
+  position: absolute; /* Para sobrepor o conteúdo */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(1, 5, 0, 0.778); /* Cor preta com opacidade de 0.5 */
+  backdrop-filter: blur(4px); 
+}
+
 .custom-text {
     font-size: 24px; /* Tamanho da fonte */
     color: #ff0000; /* Cor do texto */
@@ -20,21 +42,19 @@
     text-decoration: underline; /* Sublinhar o texto */
 }
 
-
-
-
-
 .container {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    margin-top: 20px;
-    width: 750px; /* Altere o valor da largura conforme necessário */
-    background: #fff;
-    padding: 30px;
-    border: 2px solid #000; 
-    border-radius: 15px; /* Adicione uma borda de 2px preta */
-  }
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  background: #fff;
+  padding: 30px;
+  border: 2px solid #000;
+  border-radius: 15px;
+  margin: 0 auto;/* Centraliza horizontalmente */
+  margin-top: 145px; 
+  height: 60%;
+}
+
 
   .submit1-container{
     position: relative;
@@ -56,16 +76,17 @@
 }
 
 .text{
-    color: hsl(125.13deg 88.4% 66.3%);
+    color: #241f25;;
     font-size: 18px;
     font-weight: 700;
     top: -35px;
     position: relative;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .underline{
     width: 65px;
     height: 5px;
-    background: hsl(125.13deg 88.4% 66.3% );
+    background: #241f25;
     border-radius: 9px;
     position: relative;
     top: -16px;
@@ -78,15 +99,22 @@
     gap: 25px;
 }
 .input{
-    display: flex;
-    align-items: center;
-    margin:auto;
-    width: 480px;
-    height: 45px;
-    background: #eaeaea ;
-    border-radius: 6px;
-    top: -15px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 380px;
+  height: 40px;
+  background: #eaeaea;
+  border-radius: 6px;
+  top: 0px;
+  border: 25px;
+}
 
+
+
+.input .pi {
+  position: relative;
+  left: 10px; /* Adicione margem à esquerda dos ícones para separá-los do texto */
 }
 
 .input img{
@@ -100,11 +128,12 @@
     height:30px;
     width: 400px;
     background: transparent;
-    border:none;
+    border:30px;
     outline: none;
     color: #797979;
     font-size:19px;
-
+   position: relative;
+   right: -25px;
 }
 
 .Logar-container {
@@ -120,7 +149,6 @@
     /* Adicione outros estilos específicos para o botão "Login" aqui */
   }
   
-  /* Estilos para o botão "Cadastrar" */
   .cadastro-container {
     position: relative;
     top:45px;
@@ -224,7 +252,7 @@ font-weight: bold;
 margin-top: 58px;
 position: relative;
 top: 10px;
-left: -320px;
+left: -255px;
 text-align: center;
 font-size: 15px;
 }
@@ -261,14 +289,14 @@ font-size: 15px;
     transform: scale(0.8);
     margin-right: 10px;
     position: absolute;
-    right: 230px;
-  }
+    right: 150px;
+}
+  
   
   .input label {
-    /* Alinhe o texto verticalmente com o checkbox */
     vertical-align: nowrap;
     position:relative;
-    left: 70px;
+    left: 50px;
   }
  
   /* Estilo para os botões */
@@ -277,47 +305,30 @@ font-size: 15px;
 
   
   .Cadastro-button {
-    background: #19ca34;
+    background: #19a0ca;
     color: white;
     border-radius: 30px;
-    width: 420%;
+    width: 200%;
     border: none;
     outline: none;
     padding: 8px 0 8px 15px;
-    font-size: 15px;
+    font-size: 20px;
     top: -60px;
     cursor: pointer;
     position: relative;
-    right: 215px;
+    right: 145px;
+    text-align: center;
 }
   
+.button-container {
   
-  .button-container button:last-child {
-    margin-right: 0; /* Remover o espaço à direita do último botão */
-  }
-  
-  .button-container button:hover {
-    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
-  }
-  
-  /* Estilos específicos para o botão "Logar" */
-.login-button {
-    background: #19ca34;
-    color: white;
-    border-radius: 30px;
-    width: 540%;
-    border: none;
-    outline: none;
-    padding: 8px 0 8px 15px;
-    font-size: 15px;
-    margin-top: 20px;
-    cursor: pointer;
-    position: relative;
-    right: 215px;
-    top: -65px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -40px; 
+  position: relative;
+  left: -65px;
 
 }
   
-  .login-button:hover {
-    background-color: #0056b3; /* Cor de fundo do botão "Logar" ao passar o mouse */
-  }
+ 
+  
