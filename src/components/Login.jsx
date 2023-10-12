@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SelectButton } from 'primereact/selectbutton';
 import { Button } from 'primereact/button'
 
 import "../components/Assets/styles/Login.css";
 import 'primeicons/primeicons.css';
-
+import "../components/Assets/styles/App.css";
 
 const LoginSignup = () => {
   const [currentRoute, setCurrentRoute] = useState("Login");
   const [passwordStrength, setPasswordStrength] = useState("");
   const [passwordInputFocused, setPasswordInputFocused] = useState(false);
+  const [disabledTermo, setDisabledTermo] = useState(false);
+  const [usuario, setUsuario] = useState();
+  const [email, setEmail] = useState();
+  const [senha, setSenha] = useState();
+  const [termo, setTermo] = useState();
+
+  useEffect(() => {
+    if(currentRoute === "Login") {
+      setPasswordStrength("");
+      setPasswordInputFocused(false);
+    }
+  }, [passwordStrength, passwordInputFocused])
 
   const evaluatePasswordStrength = (inputPassword) => {
-    if (currentRoute === "Cadastrar" && passwordInputFocused) {
+    if (currentRoute === "Cadastro" && passwordInputFocused) {
       let strength = "Nível de Senha = Fraca";
 
       if (inputPassword.length >= 8) {
@@ -29,10 +41,19 @@ const LoginSignup = () => {
     }
   };
 
-  const handleButton1Click = () => {
+  const clickEntrar = () => {
+    console.log(usuario, senha, termo);
+    setUsuario("");
+    setSenha("");
+    setDisabledTermo(false);
   };
 
-  const handleButton2Click = () => {
+  const clickCadastrar = () => {
+    console.log(usuario, email, senha);
+    setUsuario("");
+    setSenha("");
+    setEmail("");
+
   };
 
   return (
@@ -42,24 +63,29 @@ const LoginSignup = () => {
           <div className="header">
           </div>
           <div className="inputs">
-            {currentRoute === "Cadastrar" && (
+            <div className="input">
+              <span className="pi pi-user" />
+              <input type="text" placeholder="Usuário" id="user" value={usuario} onChange={e => setUsuario(e.currentTarget.value)}/>
+            </div>
+            {currentRoute === "Cadastro" && (
               <div className="input">
-                <span className="pi pi-user" />
-                <input type="text" placeholder="Nome Completo" />
+                <span className="pi pi-envelope" />
+                <input type="email"  placeholder="Email" aria-label="Email" id="email" value={email} onChange={e => setEmail(e.currentTarget.value)}/>
               </div>
             )}
-            <div className="input">
-            <span className="pi pi-envelope" />
-              <input type="email"  placeholder="Email" aria-label="Email" />
-            </div>
             <div className={`input ${passwordInputFocused ? "focused" : ""}`}>
              <span className="pi pi-lock" />
               <input
                 type="password"
                 placeholder="Senha"
-                onChange={(e) => evaluatePasswordStrength(e.target.value)}
+                onChange={(e) => { 
+                  evaluatePasswordStrength(e.target.value)
+                  setSenha(e.currentTarget.value)
+                }}
                 onFocus={() => setPasswordInputFocused(true)}
                 onBlur={() => setPasswordInputFocused(false)}
+                id="senha"
+                value={senha}
               />
               {passwordInputFocused && passwordStrength && (
                 <div className={`password-strength ${passwordStrength.toLowerCase()}`}>
@@ -67,9 +93,9 @@ const LoginSignup = () => {
                 </div>
               )}
             </div>
-            {currentRoute == "Login" && (
+            {currentRoute == "Login" && disabledTermo && (
               <div className="input">
-                <input type="checkbox" id="terms" name="terms" />
+                <input type="checkbox" id="termo" name="terms" value={termo} onChange={e => setTermo(e.currentTarget.value)}/>
                 <label htmlFor="terms">Eu concordo com os Termos e Condições</label>
               </div>
             )}
@@ -79,7 +105,7 @@ const LoginSignup = () => {
               <SelectButton
                 options={[
                   { label : 'Login', value: 'Login' },
-                  { label: 'Cadastrar', value: 'Cadastrar' },
+                  { label: 'Cadastro', value: 'Cadastro' },
                 ]}
                 value={currentRoute}
                 onChange={(e) => setCurrentRoute(e.value)}
@@ -88,18 +114,18 @@ const LoginSignup = () => {
                   position: 'fixed', 
                   top: '165px', 
                   left: '50%',
-                  transform: 'translateX(-55%)', // Centralizar horizontalmente
+                  transform: 'translateX(-55%)',
                 }}
-                />
+              />
             </div>
             <div className="button-container">
               {currentRoute === "Login" ? (
                 <center>
-                  <Button label="Login" className="p-button-raised p-button-primary login-button" onClick={handleButton1Click} />
+                  <Button label="Entrar" className="p-button-raised p-button-primary login-button" onClick={clickEntrar} />
                 </center>
               ) : (
                 <center>
-                <Button label="Cadastrar" className="p-button-raised p-button-primary signup-button" onClick={handleButton2Click} />
+                <Button label="Cadastrar" className="p-button-raised p-button-primary signup-button" onClick={clickCadastrar} />
                 </center>
               )}
             </div>
