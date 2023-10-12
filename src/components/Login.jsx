@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { SelectButton } from 'primereact/selectbutton';
-import { Button } from 'primereact/button'
+import { Button } from 'primereact/button';
+import { Route } from 'react-router-dom';
 
 import "../components/Assets/styles/Login.css";
 import 'primeicons/primeicons.css';
@@ -17,7 +18,7 @@ const LoginSignup = () => {
   const [usuario, setUsuario] = useState();
   const [email, setEmail] = useState();
   const [senha, setSenha] = useState();
-  const [termo, setTermo] = useState();
+  const [termo, setTermo] = useState(false);
 
   useEffect(() => {
     if(currentRoute === "Login") {
@@ -45,19 +46,34 @@ const LoginSignup = () => {
   };
 
   const clickEntrar = async () => {
-    const login = await LoginDataService.Login(usuario, senha, termo);
-    console.log(login);
-    setUsuario("");
-    setSenha("");
-    setDisabledTermo(false);
+    LoginDataService.login(usuario, senha, termo).then(resp => {
+      if (resp.data.message === "Invalid username or password") {
+        console.log("Invalid username or password")
+      } else if (resp.data.message === "User needs to update terms" && disabledTermo === true && termo === false) {
+        console.log("Concorde com os termos");
+      } else if (resp.data.message === "User needs to update terms") {
+        setDisabledTermo(true);
+      } else {
+        console.log("Login com sucesso");
+        setUsuario("");
+        setSenha("");
+        window.location.href="/map";
+      }
+    });
   };
 
   const clickCadastrar = async () => {
-    const cadastro = await CadastroDataService.Cadastro(usuario, senha, email);
-    console.log(cadastro)
+    CadastroDataService.cadastro(usuario, senha).then(resp => {
+      console.log(resp.data);
+    })
+    
+    /*console.log(cadastro.response.status);
+    if (cadastro.response.status === 403) {
+      setDisabledTermo(true);
+    }
     setUsuario("");
     setSenha("");
-    setEmail("");
+    setEmail("");*/
   };
 
   return (
@@ -99,7 +115,7 @@ const LoginSignup = () => {
             </div>
             {currentRoute == "Login" && disabledTermo && (
               <div className="input">
-                <input type="checkbox" id="termo" name="terms" value={termo} onChange={e => setTermo(e.currentTarget.value)}/>
+                <input type="checkbox" id="termo" name="terms" value={termo} onChange={e => setTermo(e.target.checked)}/>
                 <label htmlFor="terms">Eu concordo com os Termos e Condições</label>
               </div>
             )}

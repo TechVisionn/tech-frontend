@@ -1,6 +1,13 @@
+import axios from "axios";
+
 class CadastroDataService {
-  Cadastro(usuario, senha, email) {
-    return `Usuário: ${usuario}, Senha: ${senha}, Email: ${email}`;
+  LOGIN_API_URL = "http://localhost:5000/user";
+
+  cadastro(usuario, senha) {
+    return axios.post(`${this.LOGIN_API_URL}`, {
+      _user: usuario,
+      _pwd: senha
+    });
   }
 }
 

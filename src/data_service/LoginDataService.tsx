@@ -1,6 +1,14 @@
+import axios from "axios";
+
 class LoginDataService {
-  Login(user, senha, termo) {
-    return `Usuário: ${user}, Senha: ${senha}, Termo: ${termo}`;
+  LOGIN_API_URL = "http://localhost:5000/token";
+
+  login(user, senha, termo) {
+    return axios.post(`${this.LOGIN_API_URL}`, {
+      _user: user,
+      _pwd: senha,
+      _term: termo
+    });
   }
 }
 
