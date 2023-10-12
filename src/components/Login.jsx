@@ -6,6 +6,9 @@ import "../components/Assets/styles/Login.css";
 import 'primeicons/primeicons.css';
 import "../components/Assets/styles/App.css";
 
+import LoginDataService from "../data_service/LoginDataService.tsx";
+import CadastroDataService from "../data_service/CadastroDataService.tsx";
+
 const LoginSignup = () => {
   const [currentRoute, setCurrentRoute] = useState("Login");
   const [passwordStrength, setPasswordStrength] = useState("");
@@ -41,19 +44,20 @@ const LoginSignup = () => {
     }
   };
 
-  const clickEntrar = () => {
-    console.log(usuario, senha, termo);
+  const clickEntrar = async () => {
+    const login = await LoginDataService.Login(usuario, senha, termo);
+    console.log(login);
     setUsuario("");
     setSenha("");
     setDisabledTermo(false);
   };
 
-  const clickCadastrar = () => {
-    console.log(usuario, email, senha);
+  const clickCadastrar = async () => {
+    const cadastro = await CadastroDataService.Cadastro(usuario, senha, email);
+    console.log(cadastro)
     setUsuario("");
     setSenha("");
     setEmail("");
-
   };
 
   return (
