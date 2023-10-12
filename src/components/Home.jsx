@@ -4,7 +4,7 @@ import { Button } from "primereact/button";
 
 import GlebaDataService from "../data_service/GlebaDataService.tsx";
 
-import "../App.css";
+import "./Assets/styles/App.css";
 import "primereact/resources/themes/tailwind-light/theme.css";
 import "../components/Assets/styles/App.css";
 import "primereact/resources/primereact.min.css";                                    
