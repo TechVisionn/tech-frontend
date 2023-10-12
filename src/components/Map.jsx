@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
 import "leaflet-easyprint";
-import "../App.css";
+import "../components/Assets/styles/App.css";
 import "leaflet-geosearch/dist/geosearch.css";
 import 'primeicons/primeicons.css';
 

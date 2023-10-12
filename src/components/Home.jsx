@@ -6,6 +6,7 @@ import GlebaDataService from "../data_service/GlebaDataService.tsx";
 
 import "../App.css";
 import "primereact/resources/themes/tailwind-light/theme.css";
+import "../components/Assets/styles/App.css";
 import "primereact/resources/primereact.min.css";                                    
 
 class Home extends Component {
