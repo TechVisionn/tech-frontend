@@ -1,19 +1,17 @@
 import React, { Component } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Polygon } from "react-leaflet";
-import { Chart } from "primereact/chart";
-import { OpenStreetMapProvider, GeoSearchControl } from "leaflet-geosearch";
-import L from "leaflet";
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { MapContainer, TileLayer, Polygon, Popup } from "react-leaflet";
+import { SelectButton } from 'primereact/selectbutton';
 import { Button } from "primereact/button";
 import { Link } from "react-router-dom";
-
+import L from "leaflet";
+import { OpenStreetMapProvider, GeoSearchControl } from "leaflet-geosearch";
 import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
 import "leaflet-easyprint";
-import "../components/Assets/styles/App.css";
-import "leaflet-geosearch/dist/geosearch.css";
 import 'primeicons/primeicons.css';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { Chart } from "primereact/chart";
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -91,8 +89,9 @@ class Mapa extends Component {
     super(props);
     this.handleZoomReset = this.handleZoomReset.bind(this);
     this.state = {
-      plotarGlebas: false
-    }
+      plotarGlebas: false,
+      selectedOption: 'informacoes', // Defina a variável selectedOption no estado da classe
+    };
   }
 
   componentDidMount() {
@@ -109,7 +108,7 @@ class Mapa extends Component {
     const currentZoom = event.target.getZoom();
     if (currentZoom >= 13) {
       this.setState({ plotarGlebas: true });
-      console.log('plot')
+      console.log('plot');
     } else {
       this.setState({ plotarGlebas: false });
     }
@@ -122,7 +121,7 @@ class Mapa extends Component {
       this.customZoomResetControl.onAdd = () => {
         const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
         const zoomResetButton = L.DomUtil.create('a', 'leaflet-control-zoom-reset leaflet-bar-part', container);
-        
+
         zoomResetButton.href = '#';
         zoomResetButton.title = 'Redefinir Zoom';
         zoomResetButton.innerHTML = '↻';
@@ -142,11 +141,11 @@ class Mapa extends Component {
 
   renderizarGlebas() {
     const glebasParaPlotar = [];
-    coordenadasPoligono.map(gleba => {
+    coordenadasPoligono.map((gleba) => {
       if (this.leafletMap.getBounds().contains(gleba.coordenadas)) {
         glebasParaPlotar.push(gleba);
       }
-    })
+    });
     return glebasParaPlotar.map((gleba, index) => (
       <Polygon
         key={index}
@@ -156,35 +155,70 @@ class Mapa extends Component {
         weight={2}
       >
         <Popup>
-          <center><h3 style={{ fontFamily: "system-ui", color: "darkgreen" }}>INFORMAÇÕES DA GLEBA</h3></center>
-          <div style={{ fontSize: 15, fontFamily: "system-ui" }}>
-            Número Referência: { gleba.nu_identificador }
-            <br/>
-            Data emissão: { gleba.data_emissao }
-            <br/>
-            Tipo Seguro: { gleba.tp_seguro }
-            <br/>
-            Altitude: { gleba.altitude }
-            <br/>
-            Coordenadas: { gleba.coordenadas }
+          <div style={{ marginTop: '30px', marginBottom: '10px' ,position:'relative', right: '-9px'}}>
+            <SelectButton
+              value={this.state.selectedOption}
+              options={[
+                { label: 'Informações', value: 'informacoes' },
+                { label: 'Série Temporal', value: 'temporal' },
+              ]}
+              onChange={(e) => this.toggleOption(e.value)}
+              placeholder="Selecione uma opção"
+            />
           </div>
-          <br/>
-          <center><Button icon="pi pi-download" severity="success" size="small" label="Baixar relatório" /></center>
+          <center>
+            <h3 style={{ fontFamily: "system-ui", color: "darkgreen", marginTop: '10px' }}>
+              {this.state.selectedOption === 'informacoes' ? 'INFORMAÇÕES DA GLEBA' : 'SÉRIE TEMPORAL'}
+            </h3>
+          </center>
+          <div style={{ marginTop: '15px', fontSize: 15, fontFamily: "system-ui" }}>
+            {this.state.selectedOption === 'informacoes' && (
+              <>
+                Número Referência: {gleba.nu_identificador}
+                <br />
+                Data emissão: {gleba.data_emissao}
+                <br />
+                Tipo Seguro: {gleba.tp_seguro}
+                <br />
+                Altitude: {gleba.altitude}
+                <br />
+                Coordenadas: {gleba.coordenadas}
+                <br />
+                <center>
+                  <Button icon="pi pi-download" severity="success" size="small" label="Baixar relatório" />
+                </center>
+              </>
+            )}
+
+            {this.state.selectedOption === 'temporal' && (
+              <>
+                <p>Informações da Série Temporal</p>
+                {/* Adicione as informações da série temporal aqui */}
+                <center>
+                  <Button icon="pi pi-file-pdf" severity="success" size="small" label="Gerar Imagem" />
+                </center>
+              </>
+            )}
+          </div>
         </Popup>
       </Polygon>
     ));
   }
 
+  toggleOption = (option) => {
+    this.setState({ selectedOption: option });
+  };
+
   render() {
     return (
       <div id="mapa">
-        <MapContainer center={[-21, -49]} zoom={7} style={{ height: "100vh" }} ref={ref => this.leafletMap = ref}>
+        <MapContainer center={[-21, -49]} zoom={7} style={{ height: "100vh" }} ref={(ref) => (this.leafletMap = ref)}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-          { this.state.plotarGlebas && this.renderizarGlebas() }
+          {this.state.plotarGlebas && this.renderizarGlebas()}
         </MapContainer>
         <div style={{ position: 'absolute', top: '10px', left: "93%", zIndex: 1000 }}>
           <Link to="/">
-          <Button label="Sair" icon="pi pi-sign-out" severity="info" aria-label="Sair" />
+            <Button label="Sair" icon="pi pi-sign-out" severity="info" aria-label="Sair" />
           </Link>
         </div>
       </div>
