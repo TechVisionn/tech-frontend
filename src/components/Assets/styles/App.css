@@ -70,3 +70,6 @@
   left: 50%;
 }
 
+.leaflet-popup-content-wrapper {
+  min-width: 350px;
+}
