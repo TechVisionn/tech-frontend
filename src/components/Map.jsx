@@ -87,7 +87,16 @@ class Mapa extends Component {
           [-22.944651, -50.199376], [-22.94477, -50.198829], [-22.94476, -50.198164], 
           [-22.944503, -50.197306], [-22.944236, -50.196705], [-22.944088, -50.196447], 
           [-22.943653, -50.196297], [-22.942922, -50.198947], [-22.942299, -50.201544]
-        ]
+        ],
+        "data_emissao": "05/08/2021",
+        "data_fim_colheita": "22/02/2022",
+        "data_plantio": "12/10/2021",
+        "estado": "São Paulo",
+        "juros_investimentos": "4.5",
+        "tipo_grao": "Grão/Consumo",
+        "tipo_irrigacao": "Não Irrigado",
+        "tp_seguro": "Outro seguro",
+        "valor_aliquota": ""
       },
       {
         "nu_identificador": 512601235,
@@ -99,7 +108,16 @@ class Mapa extends Component {
           [-22.675629, -50.382974], [-22.6756, -50.382882], [-22.675199, -50.38241], 
           [-22.675045, -50.382228], [-22.674709, -50.381702], [-22.674293, -50.381262], 
           [-22.673455, -50.379834], [-22.672808, -50.378237]
-        ]
+        ],
+        "data_emissao": "23/08/2021",
+        "data_fim_colheita": "10/03/2022",
+        "data_plantio": "10/11/2021",
+        "estado": "São Paulo",
+        "juros_investimentos": "4.5",
+        "tipo_grao": "Grão/Consumo",
+        "tipo_irrigacao": "Não Irrigado",
+        "tp_seguro": "Outro seguro",
+        "valor_aliquota": ""
       },
       {
         "nu_identificador": 512686590,
@@ -139,14 +157,21 @@ class Mapa extends Component {
         "nu_identificador": 513591041,
         "coordenadas": [
           [-22.867901, -50.219509], [-22.869325, -50.224557], [-22.870086, -50.224401], 
-          [-22.868302, -50.220941], [-22.86848, -50.220973], [-22.869863, -50.222846], 
-          [-22.869621, -50.221269], [-22.868653, -50.221006], [-22.868826, -50.221033], 
-          [-22.868321, -50.221033], [-22.868979, -50.22107], [-22.86932, -50.221118], 
-          [-22.869626, -50.221177], [-22.868924, -50.216698], [-22.868648, -50.217074], 
+          [-22.868826, -50.221033], 
+          [-22.868979, -50.22107], [-22.86932, -50.221118], 
           [-22.868509, -50.217127], [-22.868395, -50.217127], [-22.868339, -50.217197], 
           [-22.868386, -50.21731], [-22.868349, -50.217487], [-22.868161, -50.217497], 
           [-22.867983, -50.21768], [-22.86757, -50.218125]
-        ]
+        ],
+        "data_emissao": "15/03/2022",
+        "data_fim_colheita": "22/08/2022",
+        "data_plantio": "17/03/2022",
+        "estado": "São Paulo",
+        "juros_investimentos": "3.0",
+        "tipo_grao": "Grão/Consumo",
+        "tipo_irrigacao": "Não Irrigado",
+        "tp_seguro": "Outro seguro",
+        "valor_aliquota": ""
       }
     ]
     
@@ -208,6 +233,15 @@ class Mapa extends Component {
                   Data do fim da colheita: {gleba.data_fim_colheita}
                   <br />
                   <br />
+                  <center>
+                    <Button
+                      icon="pi pi-download"
+                      severity="success"
+                      size="small"
+                      label="Baixar relatório"
+                      onClick={(e) => {this.baixarRelatorio(gleba, e)}}
+                    />
+                  </center>
                 </>
               )}
             </div>
@@ -253,15 +287,6 @@ class Mapa extends Component {
                     height="300"
                   />
                 )}
-                <center>
-                  <Button
-                    icon="pi pi-file-pdf"
-                    severity="success"
-                    size="small"
-                    label="Baixar Imagem"
-                    onClick={(e) => {this.baixarImagem(e, gleba.nu_identificador)}}
-                  />
-                </center>
               </>
             )}
           </div>
@@ -399,8 +424,6 @@ class Mapa extends Component {
                   Tipo grão: {gleba.tipo_grao}
                   <br />
                   Data do fim da colheita: {gleba.data_fim_colheita}
-                  <br />
-                  Receita Bruta: R${gleba.receita_bruta}
                   <br />
                   <br />
                   <center>
