@@ -1,12 +1,21 @@
 
 import React, { useState, useEffect } from 'react';
 import { Chart } from 'primereact/chart';
+import html2canvas from 'html2canvas';
+import { Button } from 'primereact/button';
+import SerieTemporalDataService from "../../src/data_service/SerieTemporalDataService.tsx"
 
-const TimeSeries = () => {
+const TimeSeries = (props) => {
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});
 
     useEffect(() => {
+
+        SerieTemporalDataService.buscarSerieTemporal().then(resp => {
+            console.log(resp.data)
+        })
+        //console.log(props.nu_identificador)
+
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
@@ -63,11 +72,35 @@ const TimeSeries = () => {
         setChartOptions(options);
     }, []);
 
+    function baixarImagem() {
+        const chart = document.getElementById('chart');
+        html2canvas(chart)
+        .then((canvas) => {
+          const link = document.createElement('a');
+          link.href = canvas.toDataURL('image/png');
+          link.download = 'chart.png';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        })
+        .catch((error) => {
+          console.error('Erro ao gerar imagem do gráfico:', error);
+        });
+    }
+
     return (
         <div className="card">
             <center>
                 <h3>Série Temporal do NDVI com previsões do ARIMA</h3>
-                <Chart type="line" data={chartData} options={chartOptions} />
+                <Chart id='chart' type="line" data={chartData} options={chartOptions} />
+                <br />
+                <Button
+                    icon="pi pi-file-pdf"
+                    severity="success"
+                    size="small"
+                    label="Baixar Gráfico"
+                    onClick={(e) => { baixarImagem() }}
+                />
             </center>
         </div>
     )

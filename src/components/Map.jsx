@@ -215,7 +215,7 @@ class Mapa extends Component {
             {this.state.selectedOption === "temporal" && (
               <>
                 {gleba.nu_identificador === 512464599 && (
-                  <TimeSeries />
+                  <TimeSeries nu_identificador={512464599}/>
                 )}
                 {gleba.nu_identificador === 512601235 && (
                   <img
@@ -249,16 +249,6 @@ class Mapa extends Component {
                     height="300"
                   />
                 )}
-                <center>
-                  <br />
-                  <Button
-                    icon="pi pi-file-pdf"
-                    severity="success"
-                    size="small"
-                    label="Baixar Imagem"
-                    onClick={(e) => {this.baixarImagem(e, gleba.nu_identificador)}}
-                  />
-                </center>
               </>
             )}
           </div>
@@ -282,8 +272,6 @@ class Mapa extends Component {
         greatest_longitude
       ).then((resp) => {
         this.setState({ coordenadasPoligono: resp.data });
-        console.log(resp.data);
-
         setTimeout(() => {
           this.setState({ plotarGlebas: true });
         }, 2000);

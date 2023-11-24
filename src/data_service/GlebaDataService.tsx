@@ -13,7 +13,6 @@ class GlebaDataService {
     greatest_latitude,
     greatest_longitude
   ) {
-    console.log("Caui no data service")
     return axios.post(`${this.GLEBA_API_URL}/gleba`, {
       lowest_latitude: lowest_latitude,
       lowest_longitude: lowest_longitude,
