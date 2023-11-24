@@ -71,5 +71,5 @@
 }
 
 .leaflet-popup-content-wrapper {
-  min-width: 350px;
+  width: 700px;
 }

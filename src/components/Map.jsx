@@ -20,6 +20,7 @@ import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
+import TimeSeries from "./TimeSeries.jsx";
 
 const DefaultIcon = L.icon({
   iconUrl: icon,
@@ -214,12 +215,7 @@ class Mapa extends Component {
             {this.state.selectedOption === "temporal" && (
               <>
                 {gleba.nu_identificador === 512464599 && (
-                  <img
-                    src={SerieUm}
-                    alt="Serie Temporal"
-                    width="700"
-                    height="300"
-                  />
+                  <TimeSeries />
                 )}
                 {gleba.nu_identificador === 512601235 && (
                   <img
@@ -254,6 +250,7 @@ class Mapa extends Component {
                   />
                 )}
                 <center>
+                  <br />
                   <Button
                     icon="pi pi-file-pdf"
                     severity="success"
@@ -284,8 +281,12 @@ class Mapa extends Component {
         greatest_latitude,
         greatest_longitude
       ).then((resp) => {
-        this.setState({ coordenadasPoligono: resp.data, plotarGlebas: true });
+        this.setState({ coordenadasPoligono: resp.data });
         console.log(resp.data);
+
+        setTimeout(() => {
+          this.setState({ plotarGlebas: true });
+        }, 2000);
       });
     } catch (error) {
       console.error({ error });
