@@ -8,30 +8,39 @@ import SerieTemporalDataService from "../../src/data_service/SerieTemporalDataSe
 const TimeSeries = (props) => {
     const [chartData, setChartData] = useState({});
     const [chartOptions, setChartOptions] = useState({});
+    const [dadoSerieTemporal, setDadoSerieTemporal] = useState({});
+    const [carregarSerieTemporal, setCarregarSerieTemporal] = useState(false);
 
-    useEffect(() => {
+    function carregarSerieTemporalFunction() {
 
-        SerieTemporalDataService.buscarSerieTemporal().then(resp => {
-            console.log(resp.data)
-        })
-        //console.log(props.nu_identificador)
+        /*SerieTemporalDataService.buscarSerieTemporal(props.nu_identificador).then(resp => {
+            setDadoSerieTemporal(resp.data)
+        })*/
 
+        setDadoSerieTemporal(
+            {
+                data: ["2023-11-21", "2023-11-22", "2023-11-23", "2023-11-24", "2023-11-25", "2023-11-26"],
+                ndvi_real: [0.25, 0.35, 0.40, 0.50, 0.70, 0.75],
+                ndvi_previsto: [null, null, null, null, 0.60, 0.70]
+            }
+        )
+        console.log(dadoSerieTemporal)
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
         const data = {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: dadoSerieTemporal.data,
             datasets: [
                 {
                     label: 'NDVI Real',
-                    data: [0.009, 1.02, 0.89, -0.7899, 0.009, 0.255, 0.1999],
+                    data: dadoSerieTemporal.ndvi_real,
                     fill: false,
                     borderColor: documentStyle.getPropertyValue('--blue-500')
                 },
                 {
                     label: 'NDVI Previsto',
-                    data: [null, null, null, null, 0.01, 0.3, 0.2],
+                    data: dadoSerieTemporal.ndvi_previsto,
                     fill: false,
                     borderDash: [5, 5],
                     borderColor: documentStyle.getPropertyValue('--orange-500')
@@ -70,7 +79,16 @@ const TimeSeries = (props) => {
 
         setChartData(data);
         setChartOptions(options);
-    }, []);
+
+        setTimeout(() => {
+            setCarregarSerieTemporal(true);    
+        }, 3000);
+        
+    };
+
+    useEffect(() => {
+        carregarSerieTemporalFunction()
+    }, [])
 
     function baixarImagem() {
         const chart = document.getElementById('chart');
@@ -92,7 +110,9 @@ const TimeSeries = (props) => {
         <div className="card">
             <center>
                 <h3>Série Temporal do NDVI com previsões do ARIMA</h3>
-                <Chart id='chart' type="line" data={chartData} options={chartOptions} />
+                { carregarSerieTemporal && 
+                    <Chart id='chart' type="line" data={chartData} options={chartOptions} />
+                }
                 <br />
                 <Button
                     icon="pi pi-file-pdf"
