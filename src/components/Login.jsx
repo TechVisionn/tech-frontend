@@ -47,6 +47,7 @@ const LoginSignup = () => {
 
   const clickEntrar = async () => {
     LoginDataService.login(usuario, senha, termo).then(resp => {
+      console.log(resp)
       if (resp.data.message === "Invalid username or password") {
         console.log("Invalid username or password")
       } else if (resp.data.message === "User needs to update terms" && disabledTermo === true && termo === false) {

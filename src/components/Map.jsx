@@ -340,7 +340,7 @@ class Mapa extends Component {
         fillColor={"darkgreen"}
         weight={2}
       >
-        <Popup ref={(ref) => (this.popupRef = ref)}>
+        <Popup ref={(ref) => (this.popupRef = ref)} style={{ display: "none", position: "fixed" }}>
           <div>
             <center>
               <SelectButton
@@ -370,14 +370,14 @@ class Mapa extends Component {
             <div
               style={{
                 marginTop: "15px",
-                fontSize: 15,
+                fontSize: 18,
                 fontFamily: "system-ui",
               }}
             >
               {this.state.selectedOption === "informacoes" && (
                 <>
                   {gleba.nu_identificador}
-                  Estado: {gleba.estado}
+                  <h5> Estado: {gleba.estado} </h5>
                   <br />
                   Tipo Seguro: {gleba.tp_seguro}
                   <br />
@@ -401,6 +401,7 @@ class Mapa extends Component {
                       onClick={(e) => {this.baixarRelatorio(gleba, e)}}
                     />
                   </center>
+                  
                 </>
               )}
             </div>
