@@ -88,7 +88,16 @@ class Mapa extends Component {
           [-22.944651, -50.199376], [-22.94477, -50.198829], [-22.94476, -50.198164], 
           [-22.944503, -50.197306], [-22.944236, -50.196705], [-22.944088, -50.196447], 
           [-22.943653, -50.196297], [-22.942922, -50.198947], [-22.942299, -50.201544]
-        ]
+        ],
+        "data_emissao": "05/08/2021",
+        "data_fim_colheita": "22/02/2022",
+        "data_plantio": "12/10/2021",
+        "estado": "São Paulo",
+        "juros_investimentos": "4.5",
+        "tipo_grao": "Grão/Consumo",
+        "tipo_irrigacao": "Não Irrigado",
+        "tp_seguro": "Outro seguro",
+        "valor_aliquota": ""
       },
       {
         "nu_identificador": 512601235,
@@ -100,7 +109,16 @@ class Mapa extends Component {
           [-22.675629, -50.382974], [-22.6756, -50.382882], [-22.675199, -50.38241], 
           [-22.675045, -50.382228], [-22.674709, -50.381702], [-22.674293, -50.381262], 
           [-22.673455, -50.379834], [-22.672808, -50.378237]
-        ]
+        ],
+        "data_emissao": "23/08/2021",
+        "data_fim_colheita": "10/03/2022",
+        "data_plantio": "10/11/2021",
+        "estado": "São Paulo",
+        "juros_investimentos": "4.5",
+        "tipo_grao": "Grão/Consumo",
+        "tipo_irrigacao": "Não Irrigado",
+        "tp_seguro": "Outro seguro",
+        "valor_aliquota": ""
       },
       {
         "nu_identificador": 512686590,
@@ -218,36 +236,46 @@ class Mapa extends Component {
                   <TimeSeries nu_identificador={512464599}/>
                 )}
                 {gleba.nu_identificador === 512601235 && (
-                  <img
-                    src={SerieDois}
-                    alt="Serie Temporal"
-                    width="700"
-                    height="300"
-                  />
+                  <TimeSeries nu_identificador={512601235}/>
                 )}
                 {gleba.nu_identificador === 512686590 && (
-                  <img
-                    src={SerieTres}
-                    alt="Serie Temporal"
-                    width="700"
-                    height="300"
-                  />
+                  <TimeSeries nu_identificador={512686590}/>
                 )}
                 {gleba.nu_identificador === 513263585 && (
-                  <img
-                    src={SerieQuatro}
-                    alt="Serie Temporal"
-                    width="700"
-                    height="300"
-                  />
+                  <TimeSeries nu_identificador={513263585}/>
                 )}
                 {gleba.nu_identificador === 513591041 && (
-                  <img
-                    src={SerieCinco}
-                    alt="Serie Temporal"
-                    width="700"
-                    height="300"
-                  />
+                  <TimeSeries nu_identificador={513591041}/>
+                )}
+                {gleba.nu_identificador === 512719157 && (
+                  <TimeSeries nu_identificador={512719157}/>
+                )}
+                {gleba.nu_identificador === 512720768 && (
+                  <TimeSeries nu_identificador={512720768}/>
+                )}
+                {gleba.nu_identificador === 512734716 && (
+                  <TimeSeries nu_identificador={512734716}/>
+                )}
+                {gleba.nu_identificador === 512748868 && (
+                  <TimeSeries nu_identificador={512748868}/>
+                )}
+                {gleba.nu_identificador === 512752862 && (
+                  <TimeSeries nu_identificador={512752862}/>
+                )}
+                {gleba.nu_identificador === 512758002 && (
+                  <TimeSeries nu_identificador={512758002}/>
+                )}
+                {gleba.nu_identificador === 512763981 && (
+                  <TimeSeries nu_identificador={512763981}/>
+                )}
+                {gleba.nu_identificador === 512775645 && (
+                  <TimeSeries nu_identificador={512775645}/>
+                )}
+                {gleba.nu_identificador === 512776188 && (
+                  <TimeSeries nu_identificador={512776188}/>
+                )}
+                {gleba.nu_identificador === 512781334 && (
+                  <TimeSeries nu_identificador={512781334}/>
                 )}
               </>
             )}
@@ -388,8 +416,6 @@ class Mapa extends Component {
                   Tipo grão: {gleba.tipo_grao}
                   <br />
                   Data do fim da colheita: {gleba.data_fim_colheita}
-                  <br />
-                  Receita Bruta: R${gleba.receita_bruta}
                   <br />
                   <br />
                   <center>
